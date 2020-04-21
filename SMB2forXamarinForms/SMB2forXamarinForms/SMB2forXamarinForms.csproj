@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\round_radio_button_checked_black.png" />
+    <None Remove="Images\round_radio_button_unchecked_black.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\round_radio_button_checked_black.png" />
+    <EmbeddedResource Include="Images\round_radio_button_unchecked_black.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SMBLibrary" Version="1.4.2" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1367" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SMB2forXamarinForms.Views.MainPage"
+             Title="{Binding Title}">
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+        <ScrollView Orientation="Vertical">
+            <StackLayout>
+                <StackLayout HeightRequest="30" HorizontalOptions="Start" Padding="20, 0">
+                    <Label Text="IP Address &amp; Share Folder:" FontSize="14" VerticalOptions="EndAndExpand" />
+                </StackLayout>
+                <StackLayout HeightRequest="40" Padding="30, 0">
+                    <Entry Text="{Binding Path=MySmbInfo.ServerDirectory,Mode=TwoWay}" BackgroundColor="Honeydew" TextColor="Black" WidthRequest="280" FontSize="14" HorizontalOptions="Start" />
+                </StackLayout>
+                <StackLayout HeightRequest="30" HorizontalOptions="Start" Padding="20, 0">
+                    <Label Text="User:" FontSize="14" VerticalOptions="EndAndExpand" />
+                </StackLayout>
+                <StackLayout HeightRequest="40" Padding="30, 0">
+                    <Entry Text="{Binding Path=MySmbInfo.User,Mode=TwoWay}" BackgroundColor="Honeydew" TextColor="Black" WidthRequest="200" FontSize="14" HorizontalOptions="Start" />
+                </StackLayout>
+                <StackLayout HeightRequest="30" HorizontalOptions="Start" Padding="20, 0">
+                    <Label Text="Password:" FontSize="14" VerticalOptions="EndAndExpand" />
+                </StackLayout>
+                <StackLayout HeightRequest="40" Padding="30, 0">
+                    <Entry Text="{Binding Path=MySmbInfo.Password,Mode=TwoWay}" BackgroundColor="Honeydew" TextColor="Black" WidthRequest="200" FontSize="14" IsPassword="True" HorizontalOptions="Start" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Padding="20, 0" HorizontalOptions="StartAndExpand" HeightRequest="60" >
+                    <Image Source="{Binding Path=ImgRadio[0]}" WidthRequest="36" HorizontalOptions="End">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectRadioCommand}" CommandParameter="0" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Download File" WidthRequest="120" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectRadioCommand}" CommandParameter="0" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Image Source="{Binding Path=ImgRadio[1]}" WidthRequest="36" HorizontalOptions="End">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectRadioCommand}" CommandParameter="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Upload File" WidthRequest="120" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectRadioCommand}" CommandParameter="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HeightRequest="40" Padding="20, 0">
+                    <Label Text="Local Directory:" FontSize="14" VerticalOptions="Center" />
+                    <StackLayout Orientation="Horizontal">
+                        <Picker x:Name="DirectoryPicker" Title="Select Local Directory" TitleColor="ForestGreen" ItemsSource="{Binding LocalDirectoryList}" SelectedItem="{Binding SelectedLocalDirectory, Mode=TwoWay}" FontSize="14" HorizontalOptions="Fill" IsVisible="False" />
+                        <Label Text="{Binding SelectedLocalDirectory}" BackgroundColor="Honeydew" TextColor="Black" FontSize="14" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Padding="5,0" WidthRequest="150" VerticalOptions="FillAndExpand">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DirectoryPickerShowCommand}" CommandParameter="{x:Reference DirectoryPicker}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HeightRequest="30" Padding="20, 0">
+                    <Label Text="File:" FontSize="14" VerticalOptions="EndAndExpand" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Fill" HeightRequest="40" Padding="30, 0">
+                    <Picker x:Name="FilePicker" Title="Select File" TitleColor="ForestGreen" ItemsSource="{Binding FileList}" ItemDisplayBinding="{Binding FileName}" SelectedItem="{Binding SelectedFile, Mode=TwoWay}" FontSize="14" HorizontalOptions="Fill" IsVisible="False" />
+                    <Label Text="{Binding MySmbInfo.FileName}" BackgroundColor="Honeydew" TextColor="Black" FontSize="14" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Padding="5,0" WidthRequest="280" VerticalOptions="FillAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FilePickerShowCommand}" CommandParameter="{x:Reference FilePicker}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Fill" HeightRequest="40" Padding="30, 0" IsVisible="False">
+                    <Label Text="{Binding MySmbInfo.LocalDirectory}" BackgroundColor="Honeydew" TextColor="Black" FontSize="14" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Padding="5,0" WidthRequest="280" VerticalOptions="FillAndExpand" />
+                </StackLayout>
+                <StackLayout HeightRequest="40" HorizontalOptions="Center" Padding="30, 0" Margin="0, 10">
+                    <Button x:Name="btnTranser" Text="{Binding TransferTypeTxt}" Command="{Binding FileTransferCommand}" WidthRequest="150" />
+                </StackLayout>
+            </StackLayout>
+
+        </ScrollView>
+    </StackLayout>
+
+</ContentPage>
